@@ -1,0 +1,43 @@
+<resources>
+
+    <style name="AppTheme.FragmentLayout.Series">
+        <item name="android:visibility">gone</item>
+        <item name="android:background">@color/black_transparent</item>
+    </style>
+
+    <style name="TextViewSerie">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="TextViewSerie.Interest" parent="TextViewSerie">
+        <item name="android:background">@drawable/round_textview</item>
+        <item name="android:layout_margin">3dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextViewSerie.Nickname" parent="TextViewSerie">
+        <item name="android:textSize">30sp</item>
+        <item name="android:layout_marginTop">30dp</item>
+        <item name="android:layout_marginLeft">20dp</item>
+    </style>
+
+    <style name="LinearLayout" />
+
+    <style name="LinearLayout.Interests">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginTop">14dp</item>
+        <item name="android:layout_marginLeft">14dp</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="AppTheme.Miniature.ProductAllergen">
+        <item name="android:layout_width">@dimen/widthMiniatureAllergen</item>
+        <item name="android:layout_height">@dimen/heightMiniatureAllergen</item>
+        <item name="android:layout_margin">@dimen/spacing_xsmall</item>
+    </style>
+
+</resources>

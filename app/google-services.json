@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "126412696321",
+    "firebase_url": "https://tv-series-quid.firebaseio.com",
+    "project_id": "tv-series-quid",
+    "storage_bucket": "tv-series-quid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:126412696321:android:0a6f741331ff0277",
+        "android_client_info": {
+          "package_name": "com.quiz.series.tvseriesquiz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "126412696321-mm85cao3gneul9lntl18la0i0nv936d9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1ClKMPJUuHudk0YypeZMzPedIwfWXQ1A"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

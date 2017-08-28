@@ -1,0 +1,188 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item> 
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item> 
+        <item name="colorControlHighlight">@color/colorLightPrimaryColor</item> 
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- Example: 'AppTheme.RootView.Vertical' contain all style of 'AppTheme.RootView' -->
+    <style name="AppTheme.RootView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/colorBackground</item>
+    </style>
+
+    <style name="AppTheme.Layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="AppTheme.Layout.Vertical">
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="AppTheme.LayoutAdaptative">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="AppTheme.LayoutAdaptative.Vertical">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="AppTheme.ScrollView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="AppTheme.ScrollView.Vertical">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="AppTheme.FragmentLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="AppTheme.LayoutCloseFAB">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginTop">@dimen/sizeMiddleCloseFAB</item>
+        <item name="android:layout_marginRight">@dimen/sizeMiddleCloseFAB</item>
+        <item name="android:layout_gravity">right</item>
+    </style>
+
+    <style name="AppTheme.RecyclerView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:dividerHeight">1dp</item>
+    </style>
+
+    <style name="AppTheme.Image">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="AppTheme.Text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorPrimaryText</item>
+        <item name="android:padding">@dimen/paddingSpacing</item>
+    </style>
+
+    <style name="AppTheme.Subtitle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorSecundaryText</item>
+    </style>
+
+    <style name="AppTheme.Title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorPrimaryText</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center_horizontal|center_vertical</item>
+    </style>
+
+    <style name="AppTheme.Title.Big">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/spacing_xsmall</item>
+        <item name="android:textSize">@dimen/sizeBigText</item>
+        <item name="android:textAllCaps">true</item>
+
+    </style>
+
+    <!-- TextView -->
+    <style name="AppTheme.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="AppTheme.TextView.Text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorPrimaryText</item>
+        <item name="android:padding">@dimen/paddingSpacing</item>
+    </style>
+
+    <style name="AppTheme.Fragment">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/colorBackground</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:clipToPadding">false</item>
+    </style>
+
+    <!-- ToolBar -->
+    <style name="AppTheme.ToolBar.Theme" parent="Theme.AppCompat">
+        <item name="android:textColorPrimary">@color/colorText</item>
+        <item name="android:textColorSecondary">@color/colorSecundaryText</item>
+        <item name="actionMenuTextColor">@color/colorText</item>
+        <item name="colorControlNormal">@color/colorText</item>
+    </style>
+
+    <style name="AppTheme.ToolBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/heightToolBar</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
+    <style name="AppTheme.Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <!-- Cards -->
+    <style name="AppTheme.CardView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginBottom">7dp</item>
+        <item name="android:layout_marginLeft">-3dp</item>
+        <item name="android:layout_marginRight">-3dp</item>
+    </style>
+
+    <style name="AppTheme.Layout.CardView">
+        <item name="android:layout_height">@dimen/heightCardTitle</item>
+        <item name="android:background">@color/colorBackgroundCardTitle</item>
+        <item name="android:layout_marginBottom">2dp</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:gravity">bottom</item>
+    </style>
+
+    <style name="AppTheme.ProgressBar">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_gravity">center_horizontal|center_vertical</item>
+        <item name="android:gravity">center_horizontal|center_vertical</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="AppTheme.Miniature">
+        <item name="android:layout_width">@dimen/widthMiniature</item>
+        <item name="android:layout_height">@dimen/heightMiniature</item>
+        <item name="android:layout_margin">@dimen/marginSpacing</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <!-- ViewPager -->
+    <style name="AppTheme.ViewPager">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="AppTheme.ViewPagerIndicator">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">@dimen/heightViewPageIndicator</item>
+    </style>
+
+</resources>

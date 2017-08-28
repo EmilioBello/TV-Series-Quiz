@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/AppTheme.RootView">
+
+    <RelativeLayout
+        android:id="@+id/rlQuestions"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorGray">
+
+        <com.quiz.series.tvseriesquiz.ui.viewpager.NonSwipeableViewPager
+            android:id="@+id/vpQuestions"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="@style/AppTheme.ViewPager"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rlFinish"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorGray"
+        android:visibility="gone">
+
+        <Button
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:text="@string/finish"
+            android:id="@+id/btfinish"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Medium Text"
+            android:id="@+id/tvFinish"
+            android:layout_above="@+id/btfinish"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="30dp"
+            android:textColor="#ffffffff"
+            android:textSize="18dp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

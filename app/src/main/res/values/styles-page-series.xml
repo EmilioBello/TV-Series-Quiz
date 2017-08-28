@@ -1,0 +1,122 @@
+<resources>
+
+    <style name="AppTheme.Layout.Vertical.TopImage">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/colorBackground</item>
+    </style>
+
+    <style name="AppTheme.Image.Serie">
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="AppTheme.RecyclerView.Serie">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:gravity">left</item>
+        <item name="android:paddingLeft">@dimen/spacing_xsmall</item>
+    </style>
+
+    <style name="AppTheme.RecyclerView.Serie.Language">
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="AppTheme.RecyclerView.Language">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:gravity">left</item>
+        <item name="android:paddingLeft">@dimen/spacing_xsmall</item>
+    </style>
+
+    <style name="AppTheme.Layout.Vertical.BodySerie">
+        <item name="android:layout_marginRight">@dimen/spacing_large</item>
+        <item name="android:layout_marginLeft">@dimen/spacing_large</item>
+        <item name="android:layout_marginTop">@dimen/spacing_medium</item>
+        <item name="android:layout_gravity">top</item>
+        <item name="android:layout_alignParentTop">true</item>
+    </style>
+
+    <style name="AppTheme.Layout.SerieImage">
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="AppTheme.LayoutAdaptative.Vertical.Prices">
+        <item name="android:layout_marginRight">@dimen/spacing_xsmall</item>
+    </style>
+
+    <style name="AppTheme.Title.Serie">
+        <item name="android:textSize">@dimen/sizeBigText</item>
+        <item name="android:layout_gravity">left</item>
+        <item name="android:gravity">left</item>
+        <item name="android:layout_marginLeft">@dimen/marginSpacing</item>
+        <item name="android:layout_marginTop">@dimen/spacing_xsmall</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="AppTheme.Title.HeaderSerie">
+        <item name="android:textSize">@dimen/sizeBigText</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="AppTheme.Subtitle.Serie">
+        <item name="android:layout_gravity">left</item>
+        <item name="android:gravity">left</item>
+        <item name="android:layout_marginLeft">@dimen/marginSpacing</item>
+    </style>
+
+    <style name="AppTheme.Subtitle.Serie.Price">
+        <item name="android:gravity">center_horizontal|center_vertical</item>
+        <item name="android:textSize">@dimen/sizeMiddleText</item>
+    </style>
+
+    <style name="AppTheme.Subtitle.Center">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/sizeBigText</item>
+    </style>
+
+    <style name="AppTheme.Subtitle.Center.Serie">
+        <item name="android:textSize">@dimen/sizeBigText</item>
+        <item name="android:layout_marginTop">@dimen/spacing_large</item>
+    </style>
+
+    <style name="AppTheme.Layout.RowSerie">
+        <item name="android:layout_height">@dimen/heightRowProduct</item>
+    </style>
+
+    <style name="AppTheme.Layout.RowSerieHeader">
+        <item name="android:layout_height">@dimen/heightRowProductHeader</item>
+    </style>
+
+    <style name="AppTheme.Image.MinSerie">
+        <item name="android:layout_width">@dimen/sizeMiniatureProduct</item>
+        <item name="android:layout_height">@dimen/sizeMiniatureProduct</item>
+    </style>
+
+    <style name="AppTheme.Fragment.DetailSerie">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_margin">@dimen/marginFragmentProduct</item>
+    </style>
+
+    <style name="AppTheme.FragmentLayout.Serie">
+        <item name="android:visibility">gone</item>
+        <item name="android:background">@color/black_transparent</item>
+    </style>
+
+    <style name="AppTheme.Layout.MiniatureSerie">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">.40</item>
+        <item name="android:layout_height">@dimen/heightMiniatureProduct</item>
+    </style>
+
+    <style name="AppTheme.Layout.Vertical.LinearBodySerie">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">.60</item>
+    </style>
+
+    <style name="AppTheme.Title.Big.Serie">
+        <item name="android:layout_marginTop">@dimen/spacing_medium</item>
+        <item name="android:layout_marginBottom">@dimen/spacing_medium</item>
+    </style>
+
+</resources>

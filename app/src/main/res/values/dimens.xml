@@ -1,0 +1,151 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+
+    <!-- App -->
+    <dimen name="verticalSpacing">16dp</dimen>
+    <dimen name="horizontalSpacing">16dp</dimen>
+    <dimen name="verticalSmallSpacing">8dp</dimen>
+    <dimen name="horizontalSmallSpacing">8dp</dimen>
+    <dimen name="sizeXSmallText">10sp</dimen>
+    <dimen name="sizeSmallText">12sp</dimen>
+    <dimen name="sizeText">14sp</dimen>
+    <dimen name="sizeMiddleText">18sp</dimen>
+    <dimen name="sizeBigText">20sp</dimen>
+    <dimen name="sizeBigBigText">28sp</dimen>
+    <dimen name="marginSpacing">5dp</dimen>
+    <dimen name="paddingSpacing">5dp</dimen>
+    <dimen name="heightDivider">1dip</dimen>
+
+    <dimen name="spacing_xsmall">2dp</dimen>
+    <dimen name="spacing_small">4dp</dimen>
+    <dimen name="spacing_medium">8dp</dimen>
+    <dimen name="spacing_large">16dp</dimen>
+    <dimen name="spacing_xlarge">32dp</dimen>
+
+    <dimen name="heightMiniature">56dp</dimen>
+    <dimen name="widthMiniature">56dp</dimen>
+    <dimen name="heightImageLogo">200dp</dimen>
+
+
+    <!-- Button -->
+    <dimen name="widthButtonToolbar">40dp</dimen>
+    <dimen name="heightButtonToolbar">40dp</dimen>
+
+
+    <!-- Allergen -->
+    <dimen name="heightInfoAllergen">200dp</dimen>
+    <dimen name="heightImageAllergen">150dp</dimen>
+
+    <!-- Serie -->
+    <dimen name="heightImageProduct">150dp</dimen>
+    <dimen name="heightMiniatureLike">15dp</dimen>
+    <dimen name="widthMiniatureLike">15dp</dimen>
+    <dimen name="heightMiniatureAllergen">13dp</dimen>
+    <dimen name="widthMiniatureAllergen">13dp</dimen>
+    <dimen name="heightMiniatureButton">22dp</dimen>
+    <dimen name="widthMiniatureButton">22dp</dimen>
+    <dimen name="heightLayoutMiniatureAllergen">20dp</dimen>
+    <dimen name="widthMiddleAllergen">30dp</dimen>
+    <dimen name="heightMiddleAllergen">30dp</dimen>
+    <dimen name="heightAllergens">48dp</dimen>
+    <dimen name="heightAllergensRow">25dp</dimen>
+    <dimen name="marginFragmentProduct">25dp</dimen>
+    <dimen name="sizeMiniatureProduct">50dp</dimen>
+
+    <!-- Company -->
+    <dimen name="heightMiniatureCompany">15dp</dimen>
+    <dimen name="widthMiniatureCompany">15dp</dimen>
+    <dimen name="heightMiniatureSocialCompany">35dp</dimen>
+    <dimen name="widthMiniatureSocialCompany">35dp</dimen>
+
+    <dimen name="widthMiniatureProduct">150dp</dimen>
+    <dimen name="heightImageLogoCompany">120dp</dimen>
+    <dimen name="heightMiniatureProduct">75dp</dimen>
+    <dimen name="heightRowProduct">75dp</dimen>
+    <dimen name="heightRowProductHeader">50dp</dimen>
+
+    <dimen name="widthMiniatureCategory">50dp</dimen>
+    <dimen name="heightMiniatureCategory">50dp</dimen>
+    <dimen name="heightRowCategory">50dp</dimen>
+
+    <!-- Menu -->
+    <dimen name="heightAppBarLayoutMenu">250dp</dimen>
+
+    <!-- ToolBar -->
+    <dimen name="heightToolBar">56dp</dimen>
+    <dimen name="sizeToolBar">16sp</dimen>
+    <dimen name="heightLayoutToolBar">40dp</dimen>
+
+    <!-- ViewPageIndicator -->
+    <dimen name="heightViewPageIndicator">5dp</dimen>
+
+
+    <!-- cards -->
+    <dimen name="paddingCard">5dp</dimen>
+    <dimen name="marginCard">5dp</dimen>
+
+
+    <dimen name="fontSizeCardTitle">12sp</dimen>
+    <dimen name="paddingCardTitle">5dp</dimen>
+    <dimen name="heightCardCover">125dp</dimen>
+    <dimen name="widthMiniAvatar">50dp</dimen>
+    <dimen name="heightMiniAvatar">50dp</dimen>
+    <dimen name="heightCardRow">70dp</dimen>
+    <dimen name="heightCardTitle">40dp</dimen>
+    <dimen name="heightCardTitleMiniature">25dp</dimen>
+
+    <!-- Detail Text -->
+    <dimen name="fontSizeDetailTitle">16sp</dimen>
+    <dimen name="fontSizeDetailTitleValue">16sp</dimen>
+    <dimen name="marginLeftDetailTitle">16dp</dimen>
+    <dimen name="marginLeftDetailTitleValue">8dp</dimen>
+    <dimen name="marginTopDetailTitle">16dp</dimen>
+    <dimen name="heightRow">48dp</dimen>
+
+    <!-- drawer -->
+    <dimen name="widthDrawerMenu">260dp</dimen>
+    <dimen name="paddingDrawerItem">16dp</dimen>
+    <dimen name="sizeDrawerIcon">20dp</dimen>
+    <dimen name="heightDrawerItem">40dp</dimen>
+    <dimen name="heightDrawerHeader">100dp</dimen>
+    <dimen name="heightDrawerSeparator">1dp</dimen>
+
+    <!-- fab -->
+    <dimen name="sizeFAB">56dp</dimen>
+    <dimen name="sizeMiddleFAB">28dp</dimen>
+    <dimen name="sizeCloseFAB">28dp</dimen>
+    <dimen name="sizeMiddleCloseFAB">14dp</dimen>
+    <dimen name="sizeNegativeMiddleFAB">-28dp</dimen>
+
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="item_width">192dp</dimen>
+    <dimen name="item_height">192dp</dimen>
+
+
+
+    <dimen name="elevation_low">9dp</dimen>
+    <dimen name="elevation_high">12dp</dimen>
+
+
+
+    <dimen name="font_size_row_feed_title"> @dimen/abc_text_size_small_material </dimen>
+    <dimen name="font_size_detail_contain"> @dimen/abc_text_size_medium_material</dimen>
+
+    <dimen name="gap_normal">12dp</dimen>
+    <dimen name="row_cover_size">200dp</dimen>
+    <dimen name="card_elevation">2dp</dimen>
+
+    <dimen name="detail_cover_size">350dp</dimen>
+
+    <!-- filter -->
+    <dimen name="elevation_option_noactive">0dp</dimen>
+    <dimen name="elevation_option_active">2dp</dimen>
+
+    <!-- Animation Menus -->
+    <dimen name="min_height_textheader_materiallike">65dp</dimen>
+    <dimen name="min_height_header_materiallike">100dp</dimen>
+    <dimen name="min_height_header">120dp</dimen>
+    <dimen name="max_height_header">300dp</dimen>
+    <dimen name="toolbar_height">56dp</dimen>
+</resources>

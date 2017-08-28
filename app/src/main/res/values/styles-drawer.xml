@@ -1,0 +1,103 @@
+<resources>
+
+    <!-- Drawer -->
+    <style name="AppTheme.DrawerLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
+    <style name="AppTheme.Drawer">
+        <item name="android:layout_width">@dimen/widthDrawerMenu</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:layout_gravity">start</item>
+    </style>
+
+    <style name="AppTheme.Drawer.RootView">
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="AppTheme.Drawer.Header">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="AppTheme.Drawer.Item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/heightDrawerItem</item>
+    </style>
+
+    <style name="AppTheme.Drawer.Icon">
+        <item name="android:layout_width">@dimen/sizeDrawerIcon</item>
+        <item name="android:layout_height">@dimen/sizeDrawerIcon</item>
+        <item name="android:layout_marginLeft">@dimen/paddingDrawerItem</item>
+        <item name="android:layout_marginRight">@dimen/paddingDrawerItem</item>
+        <item name="android:layout_gravity">center_horizontal|center_vertical</item>
+    </style>
+
+    <style name="AppTheme.Drawer.Item.Flags">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="AppTheme.Drawer.LayoutItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/spacing_medium</item>
+    </style>
+
+    <style name="AppTheme.Drawer.LayoutItem.Footer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/spacing_medium</item>
+        <item name= "android:layout_alignParentBottom">true</item>
+    </style>
+
+    <style name="AppTheme.Drawer.Item.Image">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+    <style name="AppTheme.Drawer.Item.IconFlag">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_marginLeft">@dimen/paddingDrawerItem</item>
+        <item name="android:layout_marginRight">@dimen/paddingDrawerItem</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="AppTheme.Drawer.Item.Title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:paddingRight">40dp</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="AppTheme.Drawer.Item.Separator">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/heightDrawerSeparator</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <style name="AppTheme.Image.Drawer">
+        <item name="android:layout_height">@dimen/heightDrawerHeader</item>
+        <item name="android:layout_margin">@dimen/spacing_medium</item>
+        <item name="android:scaleType">centerInside</item>
+    </style>
+
+    <style name="AppTheme.Text.DrawerVersion">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textSize">@dimen/sizeXSmallText</item>
+        <item name="android:textColor">@color/black_transparent</item>
+        <item name="android:gravity">right</item>
+        <item name="android:layout_marginRight">@dimen/spacing_large</item>
+    </style>
+
+</resources>

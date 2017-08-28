@@ -1,0 +1,28 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer"
+    style="@style/AppTheme.DrawerLayout">
+
+    <RelativeLayout
+        style="@style/AppTheme.RootView"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/rlParent"
+            style="@style/AppTheme.Layout">
+
+            <!-- The activity_game content view -->
+            <FrameLayout
+                android:id="@+id/flContent"
+                style="@style/AppTheme.Fragment"/>
+
+        </RelativeLayout>
+
+        <!-- Full screen layout for Splash Screen, invisible by default -->
+        <FrameLayout
+            android:id="@+id/flLauncher"
+            style="@style/AppTheme.LayoutLauncher"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
+</RelativeLayout>

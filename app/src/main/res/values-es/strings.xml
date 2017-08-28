@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TV Series Quiz</string>
+
+    <!-- Serie Data -->
+    <string name="serie_language">Idiomas</string>
+    <string name="serie_information">Información</string>
+    <string name="serie_season">Temporada:</string>
+    <string name="serie_episode">Episodio:</string>
+    <string name="serie_status">Estado:</string>
+    <string name="serie_status_working"> Trabajando para Completarla</string>
+    <string name="serie_status_atDay"> Al día</string>
+    <string name="serie_complete">Terminada:</string>
+    <string name="serie_complete_yes"> Si</string>
+    <string name="serie_complete_no"> No</string>
+    <string name="serie_of"> de </string>
+
+    <!-- Serie Data -->
+    <string name="season_lose">La respuesta ha sido incorrecta.</string>
+    <string name="season_win">Has compleado todas las preguntas\n¡Enhorabuena!</string>
+
+    <!-- Button -->
+    <string name="button_gamemode">Modos de Juego</string>
+    <string name="button_timeattack">Contrarreloj</string>
+    <string name="button_season">Temporada</string>
+    <string name="button_free">Libre</string>
+
+    <!-- Launcher -->
+    <string name="splashscreen_init">Actualizando…</string>
+    <string name="splashscreen_downloading">Descargando…</string>
+    <string name="splashscreen_complete">Actualización completado</string>
+    <string name="splashscreen_connectionerrortitle">Error</string>
+    <string name="splashscreen_connectionerrordimissButton">Aceptar</string>
+    <string name="splashscreen_dataError">Se han detectados datos incorrectos</string>
+    <string name="splashscreen_internetError">No hay conéxion disponible. Los datos posiblemente no estarán actualizados. Por favor, conéctate a internet y reinicia la App.</string>
+
+    <!-- Questions -->
+    <string name="finish">Terminar</string>
+</resources>
