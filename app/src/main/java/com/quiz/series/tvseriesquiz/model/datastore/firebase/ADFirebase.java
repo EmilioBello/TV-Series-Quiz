@@ -298,7 +298,7 @@ public class ADFirebase implements ADFirebaseInterface {
     //lazy getter
     private Long getlastUpdatedAt() {
         if (lastUpdatedAt == null) {
-            lastUpdatedAt = SharedPreferencesUtils.getLong(ADConstants.LAST_UPDATE, context);
+            lastUpdatedAt = SharedPreferencesUtils.getDate(ADConstants.LAST_UPDATE, context);
         }
 
         return lastUpdatedAt;
