@@ -31,6 +31,7 @@ public class QuestionPageAdapter extends PagerAdapter implements View.OnClickLis
     private ClickListener listener;
 
     private Button btAnswer1, btAnswer2, btAnswer3, btAnswer4;
+    private TextView tvEpisodeSeason;
     private QuestionViewModel viewModel;
 
     private int positionCurrent;
@@ -124,6 +125,12 @@ public class QuestionPageAdapter extends PagerAdapter implements View.OnClickLis
         btAnswer4 = (Button) view.findViewById(R.id.btAnswer4);
         btAnswer4.setText(viewModel.getAnswer4());
         btAnswer4.setOnClickListener(this);
+
+        final String episode = view.getResources().getString(R.string.question_episode);
+        final String season = view.getResources().getString(R.string.question_season);
+
+        tvEpisodeSeason = (TextView) view.findViewById(R.id.tvEpisodeSeason);
+        tvEpisodeSeason.setText(episode + " " + viewModel.getEpisode() + " " + season + " " + viewModel.getSeason());
     }
 
     @Override

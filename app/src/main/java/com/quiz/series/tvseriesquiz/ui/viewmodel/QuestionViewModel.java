@@ -3,6 +3,9 @@ package com.quiz.series.tvseriesquiz.ui.viewmodel;
 import com.quiz.series.tvseriesquiz.model.entity.ADEntity;
 import com.quiz.series.tvseriesquiz.model.entity.ADQuestion;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.Data;
 import lombok.experimental.Builder;
 
@@ -19,6 +22,8 @@ public class QuestionViewModel {
     private String answer3;
     private String answer4;
     private int correct;
+    private int season;
+    private int episode;
 
     public static QuestionViewModel converterEntitytoViewModel(ADEntity entity) {
         QuestionViewModel viewModel = null;
@@ -34,6 +39,8 @@ public class QuestionViewModel {
             viewModel.setAnswer3(question.getAnswer3());
             viewModel.setAnswer4(question.getAnswer4());
             viewModel.setCorrect(question.getCorrect());
+            viewModel.setSeason(question.getSeason());
+            viewModel.setEpisode(question.getEpisode());
         }
 
         return viewModel;
