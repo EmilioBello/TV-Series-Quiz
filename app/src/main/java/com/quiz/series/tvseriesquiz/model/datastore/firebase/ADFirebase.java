@@ -33,7 +33,6 @@ import com.quiz.series.tvseriesquiz.util.DateUtils;
 import com.quiz.series.tvseriesquiz.util.SharedPreferencesUtils;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -41,12 +40,12 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
 import io.realm.RealmObject;
+import io.realm.exceptions.RealmIOException;
 
-public class ADFirebase implements ADFirebaseInterface {
-
-    private final static String UPDATEDAT = "updatedAt";
+public class ADFirebase implements ADFirebaseInterface, Runnable{
 
     public static DatabaseReference rootRef;
 
@@ -54,10 +53,17 @@ public class ADFirebase implements ADFirebaseInterface {
     private ADSchema schema;
     private Context context;
 
+    private static Vector<RealmObject> daos;
+    private static ArrayList<DataSnapshot> dataFromFB;
+
+    private final int start, end;
 
     public ADFirebase(ADSchema schema) {
         this.schema = schema;
         this.context = MyApp.getContext();
+
+        start = 0;
+        end = 0;
 
         if (rootRef == null) {
             //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
@@ -69,32 +75,42 @@ public class ADFirebase implements ADFirebaseInterface {
         this.schema = schema;
         this.context = context;
 
+        start = 0;
+        end = 0;
+
         if (rootRef == null) {
             //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
             ADFirebase.rootRef = FirebaseDatabase.getInstance().getReference();
         }
     }
 
-    public static void connect() {
+    public ADFirebase(final int start, final int end){
+        this.start = start;
+        this.end = end;
     }
-
 
     @Override
     public void downloader(final ADFirebase.Callback callback) {
-        DatabaseReference childRef = rootRef.child(schema.getNameDBOnline() + "/");
+        Query childRef = rootRef
+                .child(schema.getNameDBOnline() + "/")
+                .orderByChild(ADVersionSchema.COLUMN_UPDATED_AT)
+                .startAt(getlastUpdatedAt());
 
         downloadAndSave(callback, childRef);
     }
 
     @Override
     public void downloader(int codeSerie, String language, final ADFirebase.Callback callback) {
-        DatabaseReference childRef = rootRef.child(schema.getNameDBOnline() + "/").child(String.valueOf(codeSerie)).child(language);
+        DatabaseReference childRef = rootRef
+                .child(schema.getNameDBOnline() + "/")
+                .child(String.valueOf(codeSerie))
+                .child(language);
 
         downloadAndSave(callback, childRef);
     }
 
     @Override
-    public void downloaderFirstTime(final int codeSerie, final String language, final long update, final ADFirebase.Callback callback) {
+    public void downloaderUpdateQuestion(final int codeSerie, final String language, final long update, final ADFirebase.Callback callback) {
         ADQuestionSchema questionSchema = (ADQuestionSchema) schema;
         Query childRef = rootRef.child(schema.getNameDBOnline() + "/")
                 .child(String.valueOf(codeSerie))
@@ -125,17 +141,45 @@ public class ADFirebase implements ADFirebaseInterface {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 final ADFirebaseMapper mapper = getFirebaseMapper();
-                ArrayList<RealmObject> daos = new ArrayList<>();
+                daos = new Vector<>();
+                dataFromFB = new ArrayList<>();
+
                 //To improve performance parallelize this loop
                 for (DataSnapshot entitySnapshot : dataSnapshot.getChildren()) {
-                    try {
-                        final ADEntityJSON json = (ADEntityJSON) entitySnapshot.getValue(schema.getEntityJSON());
-                        final RealmObject dao = mapper.convertFirebaseObjectToDAO(json);
-                        daos.add(dao);
-                    } catch (com.google.firebase.database.DatabaseException e) {
-                        Log.e(ADConstants.APPNAME, e.getLocalizedMessage());
-                        callback.onError(e.getLocalizedMessage());
+                    dataFromFB.add(entitySnapshot);
+                }
+
+                if(dataFromFB.size() > 20) {
+                    Thread[] threads = new Thread[4];
+
+                    final int range = dataFromFB.size()/4; //becaouse it is going to be launched 4 threads always
+
+                    threads[0] = new Thread(new ADFirebase(start, range));
+                    threads[1] = new Thread(new ADFirebase(range, range*2));
+                    threads[2] = new Thread(new ADFirebase(range*2, range*3));
+                    threads[3] = new Thread(new ADFirebase(range*3, dataFromFB.size()));
+
+                    for(int i = 0; i < threads.length; i++){
+                        threads[i].start();
                     }
+
+                    for(int i = 0; i < threads.length; i++){
+                        try {
+                            threads[i].join();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                else{
+                    ArrayList<RealmObject> daosCached = new ArrayList<>();
+
+                    for(DataSnapshot entitySnapshot : dataFromFB){
+                        RealmObject dao = mapperJsonToDao(mapper, entitySnapshot);
+                        daosCached.add(dao);
+                    }
+
+                    daos.addAll(daosCached);
                 }
                 syncronice(daos);
 
@@ -152,7 +196,34 @@ public class ADFirebase implements ADFirebaseInterface {
         });
     }
 
-    private void saveUpdateDateSharedPreference(ArrayList<RealmObject> daos) {
+    private RealmObject mapperJsonToDao(ADFirebaseMapper mapper, DataSnapshot entitySnapshot) {
+        RealmObject dao = null;
+
+        try {
+            final ADEntityJSON json = (ADEntityJSON) entitySnapshot.getValue(schema.getEntityJSON());
+            dao = mapper.convertFirebaseObjectToDAO(json);
+
+        } catch (com.google.firebase.database.DatabaseException e) {
+            Log.e(ADConstants.APPNAME, e.getLocalizedMessage());
+        }
+
+        return dao;
+    }
+
+    @Override
+    public void run() {
+        final ADFirebaseMapper mapper = getFirebaseMapper();
+        ArrayList<RealmObject> daosCached = new ArrayList<>();
+
+        for(int i = start; i < end; i++){
+            RealmObject dao = mapperJsonToDao(mapper, dataFromFB.get(i));
+            daosCached.add(dao);
+        }
+
+        daos.addAll(daosCached);
+    }
+
+    private void saveUpdateDateSharedPreference(List<RealmObject> daos) {
         ADQuestionDAO max = (ADQuestionDAO) Collections.max(daos, new Comparator<RealmObject>() {
             @Override
             public int compare(RealmObject o1, RealmObject o2) {
