@@ -36,4 +36,6 @@
 
     <!-- Questions -->
     <string name="finish">finish</string>
+    <string name="question_season">Season:</string>
+    <string name="question_episode">Episode:</string>
 </resources>
