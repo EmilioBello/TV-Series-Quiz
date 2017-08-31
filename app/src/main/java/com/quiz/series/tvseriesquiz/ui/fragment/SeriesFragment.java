@@ -210,7 +210,11 @@ public class SeriesFragment extends BaseFragment implements GetEntitiesPresenter
     private void checkDowndloadQuestion() {
         final int seasonToDownload = item.getSeasonProgress() + 1;
 
-        if(item.getSeasonProgress() >= item.getSeasonDownload()){
+        if(item.getSeasonDownload() == 0){
+            presenterQuestion = new SyncronizeQuestionsPresenter(this, item.getCode(), LanguageUtils.getLanguage(), 1);
+            presenterQuestion.initialize();
+        }
+        else if(item.getSeasonProgress() >= item.getSeasonDownload()){
             presenterQuestion = new SyncronizeQuestionsPresenter(this, item.getCode(), LanguageUtils.getLanguage(), seasonToDownload);
             presenterQuestion.initialize();
         }
