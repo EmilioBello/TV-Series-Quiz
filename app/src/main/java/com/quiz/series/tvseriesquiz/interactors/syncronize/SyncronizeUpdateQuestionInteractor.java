@@ -60,7 +60,7 @@ public class SyncronizeUpdateQuestionInteractor extends SyncronizeInteractor {
     protected void startFirebase(final ADSchema schema, final CountDownLatch lock) {
 
         ADFirebase firebase = new ADFirebase(schema);
-        firebase.downloaderFirstTime(codeSerie, language, update, new ADFirebaseInterface.Callback() {
+        firebase.downloaderUpdateQuestion(codeSerie, language, update, new ADFirebaseInterface.Callback() {
             @Override
             public void onSuccess() {
                 Log.i(ADConstants.APPNAME, "success " + schema.getNameDBOnline() + "(" + String.valueOf(lock.getCount()) + ")");
