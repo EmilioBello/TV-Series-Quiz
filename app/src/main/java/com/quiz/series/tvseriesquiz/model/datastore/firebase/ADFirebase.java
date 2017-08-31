@@ -45,7 +45,7 @@ import java.util.Vector;
 import io.realm.RealmObject;
 import io.realm.exceptions.RealmIOException;
 
-public class ADFirebase implements ADFirebaseInterface, Runnable{
+public class ADFirebase implements ADFirebaseInterface{
 
     public static DatabaseReference rootRef;
 
@@ -53,17 +53,9 @@ public class ADFirebase implements ADFirebaseInterface, Runnable{
     private ADSchema schema;
     private Context context;
 
-    private static Vector<RealmObject> daos;
-    private static ArrayList<DataSnapshot> dataFromFB;
-
-    private final int start, end;
-
     public ADFirebase(ADSchema schema) {
         this.schema = schema;
         this.context = MyApp.getContext();
-
-        start = 0;
-        end = 0;
 
         if (rootRef == null) {
             //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
@@ -75,18 +67,10 @@ public class ADFirebase implements ADFirebaseInterface, Runnable{
         this.schema = schema;
         this.context = context;
 
-        start = 0;
-        end = 0;
-
         if (rootRef == null) {
             //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
             ADFirebase.rootRef = FirebaseDatabase.getInstance().getReference();
         }
-    }
-
-    public ADFirebase(final int start, final int end){
-        this.start = start;
-        this.end = end;
     }
 
     @Override
@@ -136,50 +120,22 @@ public class ADFirebase implements ADFirebaseInterface, Runnable{
     private void downloadAndSave(final Callback callback, Query childRef) {
 
         childRef.addListenerForSingleValueEvent(new ValueEventListener() {
-        //childRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            //childRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 final ADFirebaseMapper mapper = getFirebaseMapper();
-                daos = new Vector<>();
-                dataFromFB = new ArrayList<>();
-
+                ArrayList<RealmObject> daos = new ArrayList<>();
                 //To improve performance parallelize this loop
                 for (DataSnapshot entitySnapshot : dataSnapshot.getChildren()) {
-                    dataFromFB.add(entitySnapshot);
-                }
-
-                if(dataFromFB.size() > 20) {
-                    Thread[] threads = new Thread[4];
-
-                    final int range = dataFromFB.size()/4; //becaouse it is going to be launched 4 threads always
-
-                    threads[0] = new Thread(new ADFirebase(start, range));
-                    threads[1] = new Thread(new ADFirebase(range, range*2));
-                    threads[2] = new Thread(new ADFirebase(range*2, range*3));
-                    threads[3] = new Thread(new ADFirebase(range*3, dataFromFB.size()));
-
-                    for(int i = 0; i < threads.length; i++){
-                        threads[i].start();
+                    try {
+                        final ADEntityJSON json = (ADEntityJSON) entitySnapshot.getValue(schema.getEntityJSON());
+                        final RealmObject dao = mapper.convertFirebaseObjectToDAO(json);
+                        daos.add(dao);
+                    } catch (com.google.firebase.database.DatabaseException e) {
+                        Log.e(ADConstants.APPNAME, e.getLocalizedMessage());
+                        callback.onError(e.getLocalizedMessage());
                     }
-
-                    for(int i = 0; i < threads.length; i++){
-                        try {
-                            threads[i].join();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-                else{
-                    ArrayList<RealmObject> daosCached = new ArrayList<>();
-
-                    for(DataSnapshot entitySnapshot : dataFromFB){
-                        RealmObject dao = mapperJsonToDao(mapper, entitySnapshot);
-                        daosCached.add(dao);
-                    }
-
-                    daos.addAll(daosCached);
                 }
                 syncronice(daos);
 
@@ -208,19 +164,6 @@ public class ADFirebase implements ADFirebaseInterface, Runnable{
         }
 
         return dao;
-    }
-
-    @Override
-    public void run() {
-        final ADFirebaseMapper mapper = getFirebaseMapper();
-        ArrayList<RealmObject> daosCached = new ArrayList<>();
-
-        for(int i = start; i < end; i++){
-            RealmObject dao = mapperJsonToDao(mapper, dataFromFB.get(i));
-            daosCached.add(dao);
-        }
-
-        daos.addAll(daosCached);
     }
 
     private void saveUpdateDateSharedPreference(List<RealmObject> daos) {
