@@ -122,9 +122,8 @@ public class ADSerieFirebaseMapper implements ADFirebaseMapper {
 
     private RealmQuery<RealmObject> buildQuery(ADSchema schema, ADSerieDAO dao) {
         RealmQuery<RealmObject> query;
-        ADRealm adRealm = new ADRealm(MyApp.getContext());
 
-        Realm realm = Realm.getInstance(adRealm.getConfig());
+        Realm realm = Realm.getDefaultInstance();
         query = realm.where(schema.getEntityDAO());
         query.equalTo(ADQuestionSchema.COLUMN_ACTIVE, true);
         query.equalTo(ADSerieSchema.COLUMN_CODE, dao.getCode());

@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import android.support.multidex.MultiDex;
 
 import com.quiz.series.tvseriesquiz.model.datastore.firebase.ADFirebaseUser;
+import com.quiz.series.tvseriesquiz.model.datastore.realm.ADRealm;
 
 
 public class MyApp extends Application {
@@ -19,6 +20,10 @@ public class MyApp extends Application {
 
         //get Context
         context = getApplicationContext();
+
+        //realm init
+        ADRealm realm = new ADRealm();
+        realm.init(context);
 
         //init Catalog on RAM
         checkLanguage();

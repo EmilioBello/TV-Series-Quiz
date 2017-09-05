@@ -11,25 +11,21 @@ import io.realm.RealmConfiguration;
 
 
 public class ADRealm {
-    private Context context;
-    private static final long REALM_SCHEMA_VERSION = 1;
+    private static final int REALM_SCHEMA_VERSION = 1;
     private static RealmConfiguration config0;
 
-    private static Realm realm;
-    //protected RealmConfiguration config1;
-
-    public ADRealm(Context context) {
-        this.context = context;
-        this.config0 = getConfig();
+    public void init(Context context) {
+        Realm.init(context);
+        RealmConfiguration realmConfiguration = getConfig();
+        Realm.setDefaultConfiguration(realmConfiguration);
     }
 
-    public Realm getInstance() {
-        return Realm.getInstance(config0);
-    }
-
-    public synchronized RealmConfiguration getConfig() {
+    private RealmConfiguration getConfig() {
         if (config0 == null) {
-            config0 = new RealmConfiguration.Builder(context).name(Realm.DEFAULT_REALM_NAME).schemaVersion(REALM_SCHEMA_VERSION).migration(new ADMigration()).build();
+            config0 = new RealmConfiguration.Builder()
+                    .schemaVersion(REALM_SCHEMA_VERSION) // Must be bumped when the schema changes
+                    .migration(new ADMigration()) // Migration to run instead of throwing an exception
+                    .build();
         }
 
         return config0;

@@ -33,8 +33,8 @@ public class GetLanguagesInteractor extends GetEntitiesInteractor {
     @Override
     public RealmQuery<RealmObject> buildQuery() {
         RealmQuery<RealmObject> query;
-        ADRealm adRealm = new ADRealm(MyApp.getContext());
-        Realm realm = Realm.getInstance(adRealm.getConfig());
+
+        Realm realm = Realm.getDefaultInstance();
 
         //locale
         String language = LanguageUtils.getLanguage();

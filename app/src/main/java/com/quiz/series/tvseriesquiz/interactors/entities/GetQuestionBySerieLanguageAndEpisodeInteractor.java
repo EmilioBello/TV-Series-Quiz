@@ -37,9 +37,8 @@ public class GetQuestionBySerieLanguageAndEpisodeInteractor extends GetEntitiesI
     @Override
     public RealmQuery<RealmObject> buildQuery() {
         RealmQuery<RealmObject> query;
-        ADRealm adRealm = new ADRealm(MyApp.getContext());
+        Realm realm = Realm.getDefaultInstance();
 
-        Realm realm = Realm.getInstance(adRealm.getConfig());
         query = realm.where(schema.getEntityDAO());
         //query.equalTo(ADQuestionSchema.COLUMN_ACTIVE, true);
         query.equalTo(ADQuestionSchema.COLUMN_SERIECODE, serieCode);

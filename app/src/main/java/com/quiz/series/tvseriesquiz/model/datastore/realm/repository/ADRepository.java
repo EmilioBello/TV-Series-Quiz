@@ -39,8 +39,6 @@ public class ADRepository implements ADRepositoryInterface {
     protected Context context;
     protected ADSchema schema;
 
-    private static ADRealm database;
-
     public ADRepository(final ADSchema schema) {
         this(schema, MyApp.getContext());
     }
@@ -50,23 +48,8 @@ public class ADRepository implements ADRepositoryInterface {
         this.context = context;
     }
 
-    public static Realm getRealm() {
-        return getRealm(MyApp.getContext());
-    }
-
-    public static Realm getRealm(Context context) {
-        if (database == null) {
-            connect(context);
-        }
-
-        //Realm access from incorrect thread. Realm objects can only be accessed on the thread they were created.
-        return database.getInstance();
-    }
-
-    public static void connect(Context context) {
-        if (database == null) {
-            database = new ADRealm(context);
-        }
+    private Realm getRealm() {
+        return Realm.getDefaultInstance();
     }
 
     @Override
