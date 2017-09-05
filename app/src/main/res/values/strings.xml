@@ -3,7 +3,7 @@
     <string name="app_name">TV Series Quiz</string>
 
     <!-- Serie Data -->
-    <string name="serie_language">Language</string>
+    <string name="serie_progress">Progress</string>
     <string name="serie_information">Information</string>
     <string name="serie_season">Season:</string>
     <string name="serie_episode">Episode:</string>

@@ -9,6 +9,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar;
 import com.quiz.series.tvseriesquiz.ADConstants;
 import com.quiz.series.tvseriesquiz.MyApp;
 import com.quiz.series.tvseriesquiz.R;
@@ -47,7 +48,7 @@ public class SeriesFragment extends BaseFragment implements GetEntitiesPresenter
     public boolean isDownload = false;
 
     //Details
-    private TextView tvSeason, tvEpisode, tvComplete, tvStatus;
+    private RoundCornerProgressBar pbSeason, pbEpisode;
     private ImageView ivImageBackground, ivAvatar;
     private Button btSeason;
 
@@ -66,10 +67,8 @@ public class SeriesFragment extends BaseFragment implements GetEntitiesPresenter
         ivImageBackground = (ImageView) view.findViewById(R.id.ivImageBackground);
         ivAvatar = (ImageView) view.findViewById(R.id.ivAvatar);
 
-        tvSeason = (TextView) view.findViewById(R.id.tvSeason);
-        tvEpisode = (TextView) view.findViewById(R.id.tvEpisode);
-        tvComplete = (TextView) view.findViewById(R.id.tvComplete);
-        tvStatus = (TextView) view.findViewById(R.id.tvStatus);
+        pbSeason = (RoundCornerProgressBar) view.findViewById(R.id.pbSeason);
+        pbEpisode = (RoundCornerProgressBar) view.findViewById(R.id.pbEpisode);
 
         btSeason = (Button) view.findViewById(R.id.btSeason);
     }
@@ -173,10 +172,7 @@ public class SeriesFragment extends BaseFragment implements GetEntitiesPresenter
     }
 
     private void resetSerie() {
-        tvSeason.setText(getString(R.string.serie_season));
-        tvEpisode.setText(getString(R.string.serie_episode));
-        tvComplete.setText(getString(R.string.serie_complete));
-        tvStatus.setText(getString(R.string.serie_status));
+
     }
 
     private void showSerie() {
@@ -188,23 +184,12 @@ public class SeriesFragment extends BaseFragment implements GetEntitiesPresenter
         Picasso.with(context).load(item.getUrlImageBackground()).into(ivImageBackground);
         Picasso.with(context).load(item.getUrlAvatar()).into(ivAvatar);
 
-        //TextView
-        tvSeason.append(item.getSeasonProgress() + context.getString(R.string.serie_of) + item.getSeason());
-        tvEpisode.append(item.getEpisodeProgress() + context.getString(R.string.serie_of) + item.getTotalEpisodes());
+        //Progress Bar
+        pbSeason.setMax(item.getListEpisode().size());
+        pbSeason.setProgress(item.getSeasonProgress());
 
-        if(item.isComplete()){
-            tvComplete.append(context.getString(R.string.serie_complete_yes));
-        }
-        else {
-            tvComplete.append(context.getString(R.string.serie_complete_no));
-        }
-
-        if(item.getStatus() == 0){
-            tvStatus.append(context.getString(R.string.serie_status_atDay));
-        }
-        else {
-            tvStatus.append(context.getString(R.string.serie_status_working));
-        }
+        pbEpisode.setMax(item.getListEpisode().get(item.getSeasonProgress() - 1));
+        pbEpisode.setProgress(item.getEpisodeProgress());
     }
 
     private void checkDowndloadQuestion() {
