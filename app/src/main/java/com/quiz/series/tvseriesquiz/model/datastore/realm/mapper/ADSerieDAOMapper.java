@@ -79,6 +79,14 @@ public class ADSerieDAOMapper implements ADDAOMapper {
 
         dao.setSeasonDownload(serie.getSeasonDownload());
 
+        if(!serie.getListEpisode().isEmpty()){
+            String listString = serie.getListEpisode().toString();
+            listString = listString.substring(1, listString.length()-1);
+            listString = listString.replace(" ", "");
+
+            dao.setListEpisode(listString);
+        }
+
         dao.setComplete(serie.isComplete());
         dao.setStatus(serie.getStatus());
 
