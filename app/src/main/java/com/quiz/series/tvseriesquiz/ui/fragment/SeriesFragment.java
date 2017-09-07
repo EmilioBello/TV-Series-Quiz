@@ -13,6 +13,7 @@ import com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar;
 import com.quiz.series.tvseriesquiz.ADConstants;
 import com.quiz.series.tvseriesquiz.MyApp;
 import com.quiz.series.tvseriesquiz.R;
+import com.quiz.series.tvseriesquiz.catalog.LanguageCatalog;
 import com.quiz.series.tvseriesquiz.model.entity.ADEntity;
 import com.quiz.series.tvseriesquiz.presenter.entities.GetEntitiesPresenter;
 import com.quiz.series.tvseriesquiz.presenter.entities.GetSeriesPresenter;
@@ -178,7 +179,7 @@ public class SeriesFragment extends BaseFragment implements GetEntitiesPresenter
     private void showSerie() {
         flDetailSerie.setVisibility(View.VISIBLE);
         detailOpen = true;
-        setTitle(item.getName());
+        setTitle(LanguageCatalog.getValue(item.getName()));
 
         //Images
         Picasso.with(context).load(item.getUrlImageBackground()).into(ivImageBackground);
