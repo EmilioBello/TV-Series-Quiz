@@ -24,6 +24,7 @@ import com.quiz.series.tvseriesquiz.ui.viewpager.NonSwipeableViewPager;
 import com.quiz.series.tvseriesquiz.util.LanguageUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -201,8 +202,9 @@ public class SeasonActivity extends InterstitialActivity implements QuestionPage
             questions.add(viewModel);
         }
 
+        Collections.shuffle(questions);
         questionViewModels.addAll(questions);
-        //Collections.shuffle(questionViewModels);
+
         showProducts(questions);
     }
 
