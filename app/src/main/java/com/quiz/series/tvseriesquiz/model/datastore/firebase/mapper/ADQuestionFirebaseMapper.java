@@ -22,7 +22,7 @@ public class ADQuestionFirebaseMapper implements ADFirebaseMapper {
         ADQuestionDAO dao = new ADQuestionDAO();
 
         //ADEntityDAO
-        dao.setCode(json.getCode());
+        dao.setCode((json.getSerie_code() * 10000) + json.getCode()); //Because every single question need to have a different code
         dao.setActive(GeneralUtils.intToBoolean(json.getActive()));
 
         dao.setUpdatedAt(DateUtils.convertLongToDate(json.getUpdatedAt()));
