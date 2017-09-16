@@ -20,12 +20,10 @@ import io.realm.RealmQuery;
 
 public class SaveDownloadSeasonSerieInteractor extends SaveEntityInteractor {
 
-    private final int season;
 
-    public SaveDownloadSeasonSerieInteractor(final Executor executor, final ADSchema schema, final int code, final int season){
+    public SaveDownloadSeasonSerieInteractor(final Executor executor, final ADSchema schema, final int code){
         super(executor, schema, code);
 
-        this.season = season;
     }
 
     @Override
@@ -35,7 +33,6 @@ public class SaveDownloadSeasonSerieInteractor extends SaveEntityInteractor {
         ADRepository repository = new ADRepository(schema);
 
         ADSerie serie = (ADSerie) repository.fetch(buildQuery());
-        serie.setSeasonDownload(season);
 
         return serie;
     }

@@ -15,7 +15,6 @@ public interface ADFirebaseInterface {
     void downloader(ADFirebase.Callback callback);
     void downloader(int codeSerie, String language, final ADFirebase.Callback callback);
     public void downloaderUpdateQuestion(final int codeSerie, final String language, final long update, final ADFirebase.Callback callback);
-    void downloader(final int codeSerie, final String language, final int season, final ADFirebase.Callback callback);
     void syncronice(List<RealmObject> daos);
 
     interface Callback {

@@ -9,17 +9,14 @@ import com.quiz.series.tvseriesquiz.model.datastore.realm.schema.ADSerieSchema;
  */
 
 public class SaveDownloadSeasonSeriePresenter extends SaveEntityPresenter{
-    private final int season;
 
-    public SaveDownloadSeasonSeriePresenter(final ADSchema schema, final int code, final int season) {
+    public SaveDownloadSeasonSeriePresenter(final ADSchema schema, final int code) {
         super(code, schema);
-
-        this.season = season;
     }
 
     @Override
     public void initialize(){
-        interactor = new SaveDownloadSeasonSerieInteractor(executor, schema, code, season);
+        interactor = new SaveDownloadSeasonSerieInteractor(executor, schema, code);
         interactor.execute();
     }
 }

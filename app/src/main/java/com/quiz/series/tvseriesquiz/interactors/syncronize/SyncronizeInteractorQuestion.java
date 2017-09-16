@@ -22,23 +22,21 @@ import java.util.concurrent.Executor;
  */
 
 public class SyncronizeInteractorQuestion extends SyncronizeInteractor {
-    private final int codeSerie, season;
+    private final int codeSerie;
     private final String language;
 
-    public SyncronizeInteractorQuestion(final Executor executor, final MainThread mainThread, final int codeSerie, final String language, final int season) {
+    public SyncronizeInteractorQuestion(final Executor executor, final MainThread mainThread, final int codeSerie, final String language) {
         super(executor, mainThread);
         this.context = MyApp.getContext();
         this.codeSerie = codeSerie;
         this.language = language;
-        this.season = season;
     }
 
-    public SyncronizeInteractorQuestion(final Executor executor, final MainThread mainThread, final Context context, final int codeSerie, final String language, final int season) {
+    public SyncronizeInteractorQuestion(final Executor executor, final MainThread mainThread, final Context context, final int codeSerie, final String language) {
         super(executor, mainThread);
         this.context = context;
         this.codeSerie = codeSerie;
         this.language = language;
-        this.season = season;
     }
 
     @Override
@@ -62,10 +60,10 @@ public class SyncronizeInteractorQuestion extends SyncronizeInteractor {
     protected void startFirebase(final ADSchema schema, final CountDownLatch lock) {
 
         ADFirebase firebase = new ADFirebase(schema);
-        firebase.downloader(codeSerie, language, season, new ADFirebaseInterface.Callback() {
+        firebase.downloader(codeSerie, language, new ADFirebaseInterface.Callback() {
             @Override
             public void onSuccess() {
-                SaveEntityPresenter presenter = new SaveDownloadSeasonSeriePresenter(new ADSerieSchema(), codeSerie, season);
+                SaveEntityPresenter presenter = new SaveDownloadSeasonSeriePresenter(new ADSerieSchema(), codeSerie);
                 presenter.initialize();
 
                 Log.i(ADConstants.APPNAME, "success " + schema.getNameDBOnline() + "(" + String.valueOf(lock.getCount()) + ")");

@@ -103,18 +103,6 @@ public class ADFirebase implements ADFirebaseInterface{
         downloadAndSave(callback, childRef);
     }
 
-    @Override
-    public void downloader(final int codeSerie, final String language, final int season, final ADFirebase.Callback callback) {
-        ADQuestionSchema questionSchema = (ADQuestionSchema) schema;
-        Query childRef = rootRef.child(schema.getNameDBOnline() + "/")
-                .child(String.valueOf(codeSerie))
-                .child(language)
-                .orderByChild(questionSchema.COLUMN_SEASON)
-                .equalTo(season);
-
-        downloadAndSave(callback, childRef);
-    }
-
     private void downloadAndSave(final Callback callback, Query childRef) {
 
         childRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -148,20 +136,6 @@ public class ADFirebase implements ADFirebaseInterface{
                 callback.onError(databaseError.getMessage());
             }
         });
-    }
-
-    private RealmObject mapperJsonToDao(ADFirebaseMapper mapper, DataSnapshot entitySnapshot) {
-        RealmObject dao = null;
-
-        try {
-            final ADEntityJSON json = (ADEntityJSON) entitySnapshot.getValue(schema.getEntityJSON());
-            dao = mapper.convertFirebaseObjectToDAO(json);
-
-        } catch (com.google.firebase.database.DatabaseException e) {
-            Log.e(ADConstants.APPNAME, e.getLocalizedMessage());
-        }
-
-        return dao;
     }
 
     private void saveUpdateDateSharedPreference(List<RealmObject> daos) {

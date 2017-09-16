@@ -19,12 +19,12 @@ public class SyncronizeQuestionsPresenter extends PresenterInterface {
     private SyncronizeInteractorQuestion interactor;
 
 
-    public SyncronizeQuestionsPresenter(final View view, final int codeSerie, final String language, final int season) {
+    public SyncronizeQuestionsPresenter(final View view, final int codeSerie, final String language) {
         this.view = view;
 
         ExecutorService executor = Executors.newFixedThreadPool(1);
         MainThread mainThread = new MainThreadImpl();
-        interactor = new SyncronizeInteractorQuestion(executor, mainThread, codeSerie, language,season);
+        interactor = new SyncronizeInteractorQuestion(executor, mainThread, codeSerie, language);
     }
 
     @Override
