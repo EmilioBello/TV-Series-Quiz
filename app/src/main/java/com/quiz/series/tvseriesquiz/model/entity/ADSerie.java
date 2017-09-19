@@ -22,7 +22,7 @@ public class ADSerie extends ADEntity {
     private int seasonProgress;
     private int episodeProgress;
 
-    private int seasonDownload;
+    private boolean downloaded;
 
     private ArrayList<Integer> listEpisode;
 
