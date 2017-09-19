@@ -31,7 +31,7 @@ public class ADSerieDAO extends RealmObject{
     private int seasonProgress;
     private int episodeProgress;
 
-    private int seasonDownload;
+    private boolean downloaded;
 
     private boolean complete;
     private int status;
