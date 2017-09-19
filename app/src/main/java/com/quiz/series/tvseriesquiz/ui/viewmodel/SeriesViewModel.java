@@ -25,7 +25,7 @@ public class SeriesViewModel {
     private int seasonProgress;
     private int episodeProgress;
 
-    private int seasonDownload;
+    private boolean downloaded;
 
     private ArrayList<Integer> listEpisode;
 
@@ -52,7 +52,7 @@ public class SeriesViewModel {
             viewModel.setSeasonProgress(serie.getSeasonProgress());
             viewModel.setEpisodeProgress(serie.getEpisodeProgress());
 
-            viewModel.setSeasonDownload(serie.getSeasonDownload());
+            viewModel.setDownloaded(serie.isDownloaded());
 
             viewModel.setListEpisode(serie.getListEpisode());
 
