@@ -34,7 +34,7 @@ public class ADSerieDAOMapper implements ADDAOMapper {
         entity.setEpisodeProgress(dao.getEpisodeProgress());
         entity.setSeasonProgress(dao.getSeasonProgress());
 
-        entity.setSeasonDownload(dao.getSeasonDownload());
+        entity.setDownloaded(dao.isDownloaded());
 
         if(!StringUtils.isNullOrEmpty(dao.getListEpisode())){
             ArrayList<Integer> list = new ArrayList<>();
@@ -77,7 +77,7 @@ public class ADSerieDAOMapper implements ADDAOMapper {
         dao.setEpisodeProgress(serie.getEpisodeProgress());
         dao.setSeasonProgress(serie.getSeasonProgress());
 
-        dao.setSeasonDownload(serie.getSeasonDownload());
+        dao.setDownloaded(serie.isDownloaded());
 
         if(!serie.getListEpisode().isEmpty()){
             String listString = serie.getListEpisode().toString();
