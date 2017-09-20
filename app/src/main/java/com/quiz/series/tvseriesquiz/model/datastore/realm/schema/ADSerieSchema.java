@@ -22,9 +22,10 @@ public class ADSerieSchema implements ADSchema {
     public static final String COLUMN_CREATED_AT    = "createdAt";
     public static final String COLUMN_UPDATED_AT    = "updatedAt";
 
-    //ADQuestion
+    //ADSerie
     public static final String COLUMN_NAME          = "name";
     public static final String COLUMN_SEASON        = "seasons";
+    public static final String COLUMN_DOWNLOADED    = "downloaded";
     public static final String COLUMN_TOTALEPISODES = "totalEpisodes";
     public static final String COLUMN_URLIMAGE1X    = "urlAvatar1x";
     public static final String COLUMN_URLIMAGE15X   = "urlAvatar15x";
@@ -39,6 +40,7 @@ public class ADSerieSchema implements ADSchema {
             COLUMN_UPDATED_AT,
             COLUMN_NAME,
             COLUMN_SEASON,
+            COLUMN_DOWNLOADED,
             COLUMN_TOTALEPISODES,
             COLUMN_URLIMAGE1X,
             COLUMN_URLIMAGE15X,
