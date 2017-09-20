@@ -8,22 +8,35 @@ import com.quiz.series.tvseriesquiz.MyApp;
 import com.quiz.series.tvseriesquiz.executor.MainThread;
 import com.quiz.series.tvseriesquiz.model.datastore.firebase.ADFirebase;
 import com.quiz.series.tvseriesquiz.model.datastore.firebase.ADFirebaseInterface;
+import com.quiz.series.tvseriesquiz.model.datastore.realm.repository.ADRepository;
+import com.quiz.series.tvseriesquiz.model.datastore.realm.repository.ADRepositoryInterface;
 import com.quiz.series.tvseriesquiz.model.datastore.realm.schema.ADQuestionSchema;
 import com.quiz.series.tvseriesquiz.model.datastore.realm.schema.ADSchema;
 import com.quiz.series.tvseriesquiz.model.datastore.realm.schema.ADSerieSchema;
-import com.quiz.series.tvseriesquiz.presenter.entity.Save.SaveDownloadSeasonSeriePresenter;
+import com.quiz.series.tvseriesquiz.model.entity.ADEntity;
+import com.quiz.series.tvseriesquiz.model.entity.ADSerie;
+import com.quiz.series.tvseriesquiz.presenter.entity.Save.SaveDownloadSeriePresenter;
 import com.quiz.series.tvseriesquiz.presenter.entity.Save.SaveEntityPresenter;
+import com.quiz.series.tvseriesquiz.util.LanguageUtils;
+import com.quiz.series.tvseriesquiz.util.SharedPreferencesUtils;
 
+import java.util.Calendar;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executor;
+
+import io.realm.Realm;
+import io.realm.RealmObject;
+import io.realm.RealmQuery;
 
 /**
  * Created by Emilio on 14/10/2016.
  */
 
 public class SyncronizeInteractorQuestion extends SyncronizeInteractor {
-    private final int codeSerie;
-    private final String language;
+
+    private int codeSerie;
+    private String language;
 
     public SyncronizeInteractorQuestion(final Executor executor, final MainThread mainThread, final int codeSerie, final String language) {
         super(executor, mainThread);
@@ -46,25 +59,23 @@ public class SyncronizeInteractorQuestion extends SyncronizeInteractor {
     }
 
     private void startDownloadQuestions() {
-        int MAX_BLOCK = 1;
-
+        final int MAX_BLOCK = 1;
         CountDownLatch lock = new CountDownLatch(MAX_BLOCK);
 
         startFirebase(new ADQuestionSchema(), lock);
 
         lock(lock);
-
     }
 
-    @Override
     protected void startFirebase(final ADSchema schema, final CountDownLatch lock) {
 
         ADFirebase firebase = new ADFirebase(schema);
+        
         firebase.downloader(codeSerie, language, new ADFirebaseInterface.Callback() {
             @Override
             public void onSuccess() {
-                SaveEntityPresenter presenter = new SaveDownloadSeasonSeriePresenter(new ADSerieSchema(), codeSerie);
-                presenter.initialize();
+                String nameSerie = ADConstants.getNameSerie(codeSerie);
+                SharedPreferencesUtils.saveActualTime(context, nameSerie);
 
                 Log.i(ADConstants.APPNAME, "success " + schema.getNameDBOnline() + "(" + String.valueOf(lock.getCount()) + ")");
                 lock.countDown();
