@@ -57,6 +57,16 @@ public class ADConstants {
                 add(ADQuestionSchema.DB_NAME_ONLINE);
             }});
 
-    //Series
-    public static final String gameOfThrones            = "GOT";
+    public static final String getNameSerie(final int code){
+        String name = "";
+
+        if(code == 1){
+            name = "GOT";
+        }
+        else if(code == 2){
+            name = "BRB";
+        }
+
+        return name;
+    }
 }
