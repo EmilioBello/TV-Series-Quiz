@@ -46,7 +46,6 @@ public class SeriesFragment extends BaseFragment implements GetEntitiesPresenter
 
     public static boolean detailOpen = false;
     public static boolean progressChange = true;
-    public boolean isDownload = false;
 
     //Details
     private RoundCornerProgressBar pbSeason, pbEpisode;
@@ -169,7 +168,7 @@ public class SeriesFragment extends BaseFragment implements GetEntitiesPresenter
         this.item = item;
         resetSerie();
         showSerie();
-        checkDowndloadQuestion();
+        //checkDowndloadQuestion();
     }
 
     private void resetSerie() {
@@ -193,7 +192,7 @@ public class SeriesFragment extends BaseFragment implements GetEntitiesPresenter
         pbEpisode.setProgress(item.getEpisodeProgress());
     }
 
-    private void checkDowndloadQuestion() {
+    /*private void checkDowndloadQuestion() {
         final int seasonToDownload = item.getSeasonProgress() + 1;
         if(item.getSeasonDownload() == 0){
             presenterQuestion = new SyncronizeQuestionsPresenter(this, item.getCode(), LanguageUtils.getLanguage(), 1);
@@ -208,7 +207,7 @@ public class SeriesFragment extends BaseFragment implements GetEntitiesPresenter
             presenterUpdateQuestion = new SyncronizeUpdateQuestionPresenter(this, item.getCode(), LanguageUtils.getLanguage(), update);
             presenterUpdateQuestion.initialize();
         }
-    }
+    }*/
 
     public static void closeFragment(){
         flDetailSerie.setVisibility(View.GONE);
@@ -219,11 +218,21 @@ public class SeriesFragment extends BaseFragment implements GetEntitiesPresenter
     public void onClick(View v) {
         final int id = v.getId();
 
-        if(btSeason.getId() == id && isDownload){
-            Intent intent = SeasonActivity.getLaunchIntent(MyApp.getContext(), item.getEpisodeProgress(),
-                    item.getSeasonProgress(), item.getCode(), item.getListEpisode());
-            startActivityForResult(intent, 1);
+        if(btSeason.getId() == id){
+            if(item.isDownloaded()){
+                startSeason();
+            }
+            else{
+                presenterQuestion = new SyncronizeQuestionsPresenter(this, item.getCode(), LanguageUtils.getLanguage());
+                presenterQuestion.initialize();
+            }
         }
+    }
+
+    private void startSeason() {
+        Intent intent = SeasonActivity.getLaunchIntent(MyApp.getContext(), item.getEpisodeProgress(),
+                item.getSeasonProgress(), item.getCode(), item.getListEpisode());
+        startActivityForResult(intent, 1);
     }
 
     @Override
@@ -253,6 +262,6 @@ public class SeriesFragment extends BaseFragment implements GetEntitiesPresenter
 
     @Override
     public void downloadIsDone() {
-        isDownload = true;
+        startSeason();
     }
 }
