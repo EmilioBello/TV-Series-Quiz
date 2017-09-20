@@ -14,14 +14,22 @@ import com.quiz.series.tvseriesquiz.MyApp;
 import com.quiz.series.tvseriesquiz.executor.MainThread;
 import com.quiz.series.tvseriesquiz.model.datastore.firebase.ADFirebase;
 import com.quiz.series.tvseriesquiz.model.datastore.firebase.ADFirebaseInterface;
+import com.quiz.series.tvseriesquiz.model.datastore.realm.repository.ADRepository;
 import com.quiz.series.tvseriesquiz.model.datastore.realm.schema.ADLanguageSchema;
 import com.quiz.series.tvseriesquiz.model.datastore.realm.schema.ADQuestionSchema;
 import com.quiz.series.tvseriesquiz.model.datastore.realm.schema.ADSchema;
 import com.quiz.series.tvseriesquiz.model.datastore.realm.schema.ADSerieSchema;
+import com.quiz.series.tvseriesquiz.model.entity.ADEntity;
+import com.quiz.series.tvseriesquiz.util.LanguageUtils;
 
 import java.util.Calendar;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executor;
+
+import io.realm.Realm;
+import io.realm.RealmObject;
+import io.realm.RealmQuery;
 
 
 public class SyncronizeInteractorStart extends SyncronizeInteractor {
@@ -66,11 +74,36 @@ public class SyncronizeInteractorStart extends SyncronizeInteractor {
         checkSchema(new ADSerieSchema(), lock);
         checkSchema(new ADLanguageSchema(), lock);
 
-        //Parte de prueba, borra en version final
-        /*SyncronizeInteractorQuestion sincro = new SyncronizeInteractorQuestion(executor, mainThread, 1, "en");
-        sincro.startProcess();*/
+        List<ADEntity> seriesDownloaded = getListSeriesDownloaded();
+
+        //Download questions of series that have been updated
+        for(ADEntity entity : seriesDownloaded){
+            SyncronizeUpdateQuestionInteractor sincro = new SyncronizeUpdateQuestionInteractor(executor, mainThread, entity.getCode(), LanguageUtils.getLanguage());
+            sincro.startProcess();
+        }
 
         lock(lock);
         loadLanguage();
+    }
+
+    public List<ADEntity> getListSeriesDownloaded() {
+        ADSerieSchema schema = new ADSerieSchema();
+        ADRepository repository = new ADRepository(schema);
+
+        List<ADEntity> entities = repository.fetchQuery(buildQuery(schema), null);
+
+
+        return entities;
+    }
+
+    public RealmQuery<RealmObject> buildQuery(final ADSerieSchema schema) {
+        RealmQuery<RealmObject> query;
+        Realm realm = Realm.getDefaultInstance();
+
+        query = realm.where(schema.getEntityDAO());
+        query.equalTo(ADSerieSchema.COLUMN_ACTIVE, true);
+        query.equalTo(ADSerieSchema.COLUMN_DOWNLOADED, true);
+
+        return query;
     }
 }

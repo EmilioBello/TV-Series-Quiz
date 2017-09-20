@@ -10,6 +10,7 @@ import com.quiz.series.tvseriesquiz.model.datastore.firebase.ADFirebase;
 import com.quiz.series.tvseriesquiz.model.datastore.firebase.ADFirebaseInterface;
 import com.quiz.series.tvseriesquiz.model.datastore.realm.schema.ADQuestionSchema;
 import com.quiz.series.tvseriesquiz.model.datastore.realm.schema.ADSchema;
+import com.quiz.series.tvseriesquiz.util.SharedPreferencesUtils;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executor;
@@ -20,23 +21,23 @@ import java.util.concurrent.Executor;
 
 public class SyncronizeUpdateQuestionInteractor extends SyncronizeInteractor {
     private final int codeSerie;
-    private final long update;
     private final String language;
+    private final long update;
 
-    public SyncronizeUpdateQuestionInteractor(final Executor executor, final MainThread mainThread, final int codeSerie, final String language, final long update) {
+    public SyncronizeUpdateQuestionInteractor(final Executor executor, final MainThread mainThread, final int codeSerie, final String language) {
         super(executor, mainThread);
         this.context = MyApp.getContext();
         this.codeSerie = codeSerie;
         this.language = language;
-        this.update = update;
+        update =  SharedPreferencesUtils.getDate(ADConstants.getNameSerie(codeSerie), context);
     }
 
-    public SyncronizeUpdateQuestionInteractor(final Executor executor, final MainThread mainThread, final Context context, final int codeSerie, final String language, final long update) {
+    public SyncronizeUpdateQuestionInteractor(final Executor executor, final MainThread mainThread, final Context context, final int codeSerie, final String language) {
         super(executor, mainThread);
         this.context = context;
         this.codeSerie = codeSerie;
         this.language = language;
-        this.update = update;
+        update =  SharedPreferencesUtils.getDate(ADConstants.getNameSerie(codeSerie), context);
     }
 
     @Override
@@ -60,9 +61,13 @@ public class SyncronizeUpdateQuestionInteractor extends SyncronizeInteractor {
     protected void startFirebase(final ADSchema schema, final CountDownLatch lock) {
 
         ADFirebase firebase = new ADFirebase(schema);
+
         firebase.downloaderUpdateQuestion(codeSerie, language, update, new ADFirebaseInterface.Callback() {
             @Override
             public void onSuccess() {
+                String nameSerie = ADConstants.getNameSerie(codeSerie);
+                SharedPreferencesUtils.saveActualTime(context, nameSerie);
+
                 Log.i(ADConstants.APPNAME, "success " + schema.getNameDBOnline() + "(" + String.valueOf(lock.getCount()) + ")");
                 lock.countDown();
             }
