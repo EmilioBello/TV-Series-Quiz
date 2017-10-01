@@ -123,10 +123,11 @@ public class ADFirebase implements ADFirebaseInterface{
                         callback.onError(e.getLocalizedMessage());
                     }
                 }
-                syncronice(daos);
-
-                if(schema instanceof ADQuestionSchema){
-                    saveUpdateDateSharedPreference(daos);
+                if(daos.size() > 0){
+                    syncronice(daos);
+                    if(schema instanceof ADQuestionSchema){
+                        saveUpdateDateSharedPreference(daos);
+                    }
                 }
 
                 callback.onSuccess();

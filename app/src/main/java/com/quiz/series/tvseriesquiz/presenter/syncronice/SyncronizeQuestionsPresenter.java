@@ -4,7 +4,10 @@ import com.quiz.series.tvseriesquiz.executor.MainThread;
 import com.quiz.series.tvseriesquiz.executor.MainThreadImpl;
 import com.quiz.series.tvseriesquiz.interactors.syncronize.SyncronizeInteractorQuestion;
 import com.quiz.series.tvseriesquiz.interactors.syncronize.SyncronizeInterface;
+import com.quiz.series.tvseriesquiz.model.datastore.realm.schema.ADQuestionSchema;
+import com.quiz.series.tvseriesquiz.model.datastore.realm.schema.ADSerieSchema;
 import com.quiz.series.tvseriesquiz.presenter.PresenterInterface;
+import com.quiz.series.tvseriesquiz.presenter.entity.Save.SaveDownloadSeriePresenter;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -18,9 +21,12 @@ public class SyncronizeQuestionsPresenter extends PresenterInterface {
     final private View view;
     private SyncronizeInteractorQuestion interactor;
 
+    private final int code;
+
 
     public SyncronizeQuestionsPresenter(final View view, final int codeSerie, final String language) {
         this.view = view;
+        this.code = codeSerie;
 
         ExecutorService executor = Executors.newFixedThreadPool(1);
         MainThread mainThread = new MainThreadImpl();
@@ -39,6 +45,9 @@ public class SyncronizeQuestionsPresenter extends PresenterInterface {
             @Override
             public void notifySuccess(boolean newDataAvailable) {
                 if(view != null){
+                    SaveDownloadSeriePresenter presenter = new SaveDownloadSeriePresenter(new ADSerieSchema(), code);
+                    presenter.initialize();
+
                     view.downloadIsDone();
                 }
             }
