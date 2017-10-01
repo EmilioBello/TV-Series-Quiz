@@ -156,13 +156,10 @@ public class SeasonActivity extends InterstitialActivity implements QuestionPage
 
         if(questionViewModels.size() - 1 == position){
             episode++;
-            if(listEpisodes.size() >= season){
+            if(listEpisodes.size() > 0){
                 if(episode > listEpisodes.get(season - 1)){
                     episode = 1;
                     season++;
-
-                    SyncronizeQuestionsPresenter presenterQuestion = new SyncronizeQuestionsPresenter(null, serieCode, LanguageUtils.getLanguage(), season + 1);
-                    presenterQuestion.initialize();
                 }
                 init();
             }

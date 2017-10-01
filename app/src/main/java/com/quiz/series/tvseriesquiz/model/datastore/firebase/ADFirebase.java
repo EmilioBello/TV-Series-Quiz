@@ -153,7 +153,7 @@ public class ADFirebase implements ADFirebaseInterface{
             }
         });
         long date = DateUtils.convertDateToLong(max.getUpdatedAt());
-        SharedPreferencesUtils.saveDate(context, ADConstants.gameOfThrones, date);
+        SharedPreferencesUtils.saveDate(context, ADConstants.getNameSerie(max.getCode()), date);
     }
 
 
