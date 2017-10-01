@@ -43,7 +43,6 @@ public class SyncronizeUpdateQuestionInteractor extends SyncronizeInteractor {
     @Override
     protected void startProcess() {
         startDownloadUpdateQuestions();
-        notifySuccess();
     }
 
     private void startDownloadUpdateQuestions() {
