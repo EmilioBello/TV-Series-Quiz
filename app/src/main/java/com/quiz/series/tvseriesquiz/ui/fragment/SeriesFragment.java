@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar;
+import com.kaopiz.kprogresshud.KProgressHUD;
 import com.quiz.series.tvseriesquiz.ADConstants;
 import com.quiz.series.tvseriesquiz.MyApp;
 import com.quiz.series.tvseriesquiz.R;
@@ -19,6 +20,7 @@ import com.quiz.series.tvseriesquiz.presenter.entities.GetEntitiesPresenter;
 import com.quiz.series.tvseriesquiz.presenter.entities.GetSeriesPresenter;
 import com.quiz.series.tvseriesquiz.presenter.syncronice.SyncronizeQuestionsPresenter;
 import com.quiz.series.tvseriesquiz.presenter.syncronice.SyncronizeUpdateQuestionPresenter;
+import com.quiz.series.tvseriesquiz.ui.activity.MainActivity;
 import com.quiz.series.tvseriesquiz.ui.activity.SeasonActivity;
 import com.quiz.series.tvseriesquiz.ui.adapter.SerieAdapter;
 import com.quiz.series.tvseriesquiz.ui.viewmodel.SeriesViewModel;
@@ -41,6 +43,8 @@ public class SeriesFragment extends BaseFragment implements GetEntitiesPresenter
 
     private SerieAdapter adapter;
     private RecyclerView rvSerie;
+
+    private KProgressHUD hud;
 
     private static FrameLayout flDetailSerie;
 
@@ -225,11 +229,22 @@ public class SeriesFragment extends BaseFragment implements GetEntitiesPresenter
             else{
                 presenterQuestion = new SyncronizeQuestionsPresenter(this, item.getCode(), LanguageUtils.getLanguage());
                 presenterQuestion.initialize();
+
+                hud = KProgressHUD.create(getActivity())
+                        .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                        .setLabel("Please wait")
+                        .setDetailsLabel("Downloading data")
+                        .setAnimationSpeed(2)
+                        .setDimAmount(0.5f)
+                        .show();
             }
         }
     }
 
     private void startSeason() {
+        if(hud != null){
+            hud.dismiss();
+        }
         Intent intent = SeasonActivity.getLaunchIntent(MyApp.getContext(), item.getEpisodeProgress(),
                 item.getSeasonProgress(), item.getCode(), item.getListEpisode());
         startActivityForResult(intent, 1);
