@@ -69,7 +69,7 @@ public class LauncherFragment extends BaseFragment implements SyncronizePresente
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        main.hideLauncher();
+                        main.finishAffinity();
                     }
                 },
                 getResources().getString(R.string.splashscreen_connectionerrordimissButton)
